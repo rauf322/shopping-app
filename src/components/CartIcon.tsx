@@ -58,46 +58,46 @@ export const CartDropdown = () => {
                   <p>Your cart is empty</p>
                 </div>
               ) : (
-                <>
-                  <div className='cart-items'>
-                    {cartItems.map(([productId, item]) => (
-                      <div key={productId} className='cart-dropdown-item'>
-                        <div className='item-info'>
-                          <h4>{item.name}</h4>
-                          <p className='item-details'>
-                            {item.amount} × $
-                            {(item.totalPrice / item.amount).toFixed(2)}
-                          </p>
-                        </div>
-                        <div className='item-actions'>
-                          <span className='item-total'>
-                            ${item.totalPrice.toFixed(2)}
-                          </span>
-                          <button
-                            className='remove-btn'
-                            onClick={() => deleteFromCart(productId)}
-                            title='Remove one item'
-                          >
-                            −
-                          </button>
-                        </div>
+                <div className='cart-items'>
+                  {cartItems.map(([productId, item]) => (
+                    <div key={productId} className='cart-dropdown-item'>
+                      <div className='item-info'>
+                        <h4>{item.name}</h4>
+                        <p className='item-details'>
+                          {item.amount} × $
+                          {(item.totalPrice / item.amount).toFixed(2)}
+                        </p>
                       </div>
-                    ))}
-                  </div>
-
-                  <div className='cart-footer'>
-                    <div className='cart-total'>
-                      <strong>Total: ${totalPrice.toFixed(2)}</strong>
+                      <div className='item-actions'>
+                        <span className='item-total'>
+                          ${item.totalPrice.toFixed(2)}
+                        </span>
+                        <button
+                          className='remove-btn'
+                          onClick={() => deleteFromCart(productId)}
+                          title='Remove one item'
+                        >
+                          −
+                        </button>
+                      </div>
                     </div>
-                    <div className='cart-actions'>
-                      <button className='checkout-btn'>
-                        Checkout ({totalItems} items)
-                      </button>
-                    </div>
-                  </div>
-                </>
+                  ))}
+                </div>
               )}
             </div>
+
+            {cartItems.length > 0 && (
+              <div className='cart-footer'>
+                <div className='cart-total'>
+                  <strong>Total: ${totalPrice.toFixed(2)}</strong>
+                </div>
+                <div className='cart-actions'>
+                  <button className='checkout-btn'>
+                    Checkout ({totalItems} items)
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </>
       )}
