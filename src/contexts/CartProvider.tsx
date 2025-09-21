@@ -3,7 +3,11 @@ import { CartContext } from './CartContext';
 import type { ProductItem, CartState } from '../types/ProductType';
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<CartState>({});
+  const [cart, setCart] = useState<CartState>(() => {
+    return localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart')!)
+      : {};
+  });
 
   function addToCart(product: ProductItem) {
     setCart((prev) => {
@@ -14,6 +18,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
           totalPrice: prev[productId].totalPrice + product.price,
           amount: prev[productId].amount + 1,
         };
+        localStorage.setItem(
+          'cart',
+          JSON.stringify({ ...prev, [productId]: newObj }),
+        );
         return { ...prev, [productId]: newObj };
       } else {
         const newObj = {
@@ -21,6 +29,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
           amount: 1,
           totalPrice: product.price,
         };
+        localStorage.setItem(
+          'cart',
+          JSON.stringify({ ...prev, [productId]: newObj }),
+        );
         return { ...prev, [productId]: newObj };
       }
     });
@@ -38,8 +50,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (newObj.amount == 0) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { [productId]: _removed, ...rest } = prev;
+        localStorage.setItem('cart', JSON.stringify(rest));
         return rest;
       }
+      localStorage.setItem(
+        'cart',
+        JSON.stringify({ ...prev, [productId]: newObj }),
+      );
       return { ...prev, [productId]: newObj };
     });
   }

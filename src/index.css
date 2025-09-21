@@ -6,7 +6,9 @@
 }
 
 /* Touch-friendly improvements */
-button, .cart-trigger, .remove-btn {
+button,
+.cart-trigger,
+.remove-btn {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   -webkit-touch-callout: none;
@@ -21,7 +23,9 @@ html {
 }
 
 /* Prevent zoom on input focus (mobile) */
-input, select, textarea {
+input,
+select,
+textarea {
   font-size: 16px;
 }
 
@@ -353,23 +357,23 @@ body {
   font-size: 0.9rem;
 }
 
-  .remove-btn {
-    background: rgba(239, 68, 68, 0.2);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #fca5a5;
-    border-radius: 6px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 1rem;
-    font-weight: 700;
-    min-width: 24px;
-    min-height: 24px;
-  }
+.remove-btn {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 24px;
+  min-height: 24px;
+}
 
 .remove-btn:hover {
   background: rgba(239, 68, 68, 0.3);
@@ -464,6 +468,90 @@ body {
 
 /* Mobile Responsive Design */
 
+/* Fullscreen cart on small mobile devices */
+@media (max-width: 450px) {
+  .cart-dropdown {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    animation: slideUpMobile 0.3s ease;
+    z-index: 9999;
+  }
+
+  .cart-overlay {
+    display: none !important;
+  }
+
+  .cart-content {
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto;
+    padding-bottom: 120px;
+  }
+
+  .cart-header {
+    padding: 1.5rem 1.25rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+    background: #1a1a1a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .cart-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .cart-close {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .cart-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    border-top: 2px solid rgba(255, 255, 255, 0.15);
+    padding: 1rem;
+    z-index: 10;
+  }
+
+  .cart-items {
+    padding: 1rem;
+  }
+
+  .cart-dropdown-item {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+
+  @keyframes slideUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 /* Tablet and small desktop */
 @media (max-width: 768px) {
   .header-content {
@@ -490,172 +578,5 @@ body {
 
   .app-title {
     font-size: 2rem;
-  }
-}
-
-/* Mobile phones */
-@media (max-width: 480px) {
-  /* Header mobile optimizations */
-  .app-header-nav {
-    padding: 0.75rem 0;
-    margin-bottom: 1rem;
-  }
-
-  .header-content {
-    padding: 0 1rem;
-    gap: 0.75rem;
-  }
-
-  .header-title {
-    font-size: 1.1rem;
-  }
-
-  .header-subtitle {
-    font-size: 0.7rem;
-  }
-
-  /* Main content mobile */
-  .main-content {
-    padding: 1rem 0;
-  }
-
-  .content-header {
-    margin-bottom: 2rem;
-    padding: 0 1rem;
-  }
-
-  .app-title {
-    font-size: 1.75rem;
-  }
-
-  .app-subtitle {
-    font-size: 1rem;
-  }
-
-  /* Product grid mobile */
-  .product-items {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-    gap: 1.25rem;
-  }
-
-  .product-item {
-    padding: 1.25rem;
-  }
-
-  .product-item img {
-    height: 200px;
-    margin-bottom: 0.75rem;
-  }
-
-  .product-item h1 {
-    font-size: 1.1rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .product-item p {
-    font-size: 0.85rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .product-price {
-    font-size: 1.3rem !important;
-  }
-
-  .add-to-cart-btn {
-    padding: 0.65rem 1rem;
-    font-size: 0.9rem;
-    margin-top: 0.75rem;
-  }
-
-  /* Cart dropdown mobile */
-  .cart-dropdown {
-    width: calc(100vw - 1rem);
-    right: 0.5rem;
-    left: 0.5rem;
-    max-height: 70vh;
-    transform: none;
-    animation: slideUp 0.3s ease;
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .cart-trigger {
-    padding: 0.6rem 0.8rem;
-    border-radius: 10px;
-  }
-
-  .cart-text {
-    font-size: 0.85rem;
-  }
-
-  .cart-badge {
-    width: 18px;
-    height: 18px;
-    font-size: 0.7rem;
-    top: -6px;
-    right: -6px;
-  }
-
-  .cart-dropdown-item {
-    padding: 0.75rem 1rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .item-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  /* Mobile touch targets */
-  .remove-btn {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-    min-height: 32px;
-    font-size: 1.1rem;
-  }
-
-  .cart-close {
-    padding: 0.5rem;
-    min-width: 32px;
-    min-height: 32px;
-  }
-
-  .checkout-btn {
-    padding: 0.8rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* Extra small phones */
-@media (max-width: 360px) {
-  .app-title {
-    font-size: 1.5rem;
-  }
-
-  .product-item {
-    padding: 1rem;
-  }
-
-  .product-item img {
-    height: 180px;
-  }
-
-  .cart-dropdown {
-    width: calc(100vw - 0.5rem);
-    right: 0.25rem;
-    left: 0.25rem;
   }
 }
