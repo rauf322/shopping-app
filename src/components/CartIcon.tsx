@@ -58,9 +58,9 @@ export const CartDropdown = () => {
                   <p>Your cart is empty</p>
                 </div>
               ) : (
-                <div className='cart-items'>
+                <ul className='cart-items'>
                   {cartItems.map(([productId, item]) => (
-                    <div key={productId} className='cart-dropdown-item'>
+                    <li key={productId} className='cart-dropdown-item'>
                       <div className='item-info'>
                         <h4>{item.name}</h4>
                         <p className='item-details'>
@@ -80,9 +80,9 @@ export const CartDropdown = () => {
                           −
                         </button>
                       </div>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </div>
 
