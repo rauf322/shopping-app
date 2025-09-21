@@ -42,19 +42,21 @@
   animation: pulse 2s infinite;
 }
 
+/* Mobile loading improvements */
+@media (max-width: 480px) {
+  .loading-container {
+    min-height: 200px;
+    padding: 2rem 1rem;
+  }
+
+  .loading-spinner {
+    font-size: 1.25rem;
+  }
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
 
-@media (max-width: 768px) {
-  .app-title {
-    font-size: 2rem;
-  }
-  
-  .product-items {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-    gap: 1.5rem;
-  }
-}
+/* Mobile styles moved to index.css for better organization */
