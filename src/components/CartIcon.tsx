@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useCart } from '../hooks/useCart';
 
 export const CartDropdown = () => {
-  const { cart, deleteFromCart } = useCart();
+  const { cart, deleteFromCart, deleteAll } = useCart();
   const [isOpen, setIsOpen] = useState(false);
 
   const cartItems = Object.entries(cart);
@@ -92,8 +92,11 @@ export const CartDropdown = () => {
                   <strong>Total: ${totalPrice.toFixed(2)}</strong>
                 </div>
                 <div className='cart-actions'>
+                  <button className='delete-all-btn' onClick={deleteAll}>
+                    Clear All
+                  </button>
                   <button className='checkout-btn'>
-                    Checkout ({totalItems} items)
+                    Checkout ({totalItems})
                   </button>
                 </div>
               </div>

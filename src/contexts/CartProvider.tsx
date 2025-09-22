@@ -8,7 +8,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       ? JSON.parse(localStorage.getItem('cart')!)
       : {};
   });
-
+  function deleteAll() {
+    setCart({});
+    localStorage.setItem('cart', '{}');
+  }
   function addToCart(product: ProductItem) {
     setCart((prev) => {
       const productId = product.id;
@@ -74,7 +77,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, deleteFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, deleteFromCart, deleteAll }}
+    >
       {children}
     </CartContext.Provider>
   );
