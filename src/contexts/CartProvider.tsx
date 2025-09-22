@@ -12,6 +12,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
   function addToCart(product: ProductItem) {
     setCart((prev) => {
       const productId = product.id;
+      const visible = document.querySelector('.visible') as HTMLElement;
+      if (visible) {
+        visible.style.display = 'block';
+        visible.classList.remove('hiding');
+        setTimeout(() => {
+          visible.classList.add('hiding');
+          setTimeout(() => {
+            visible.style.display = 'none';
+            visible.classList.remove('hiding');
+          }, 300);
+        }, 2500);
+      }
       if (prev[productId]) {
         const newObj = {
           name: prev[productId].name,

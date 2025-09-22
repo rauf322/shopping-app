@@ -14,6 +14,9 @@ function App() {
           </p>
         </div>
         <ListItems />
+        <div className='visible'>
+          <span>✓ Item added to cart!</span>
+        </div>
       </main>
     </div>
   );
